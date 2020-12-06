@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.2"
+
+    defaultConfig {
+        applicationId "com.richard.androidbaseproject"
+        minSdkVersion 17
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        debugConfig {
+            storeFile file("../test.jks")
+            storePassword "123456"
+            keyAlias "test"
+            keyPassword "123456"
+            v2SigningEnabled false
+        }
+        release {
+            storeFile file("../test.jks")
+            storePassword "123456"
+            keyAlias "test"
+            keyPassword "123456"
+            v2SigningEnabled false
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //implementation "com.android.support:support-vector-drawable:$rootProject.ext.supportLibraryVersion"
+    //implementation "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.ext.rxbindingVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding-support-v4:$rootProject.ext.rxbindingVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$rootProject.ext.rxbindingVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding-design:$rootProject.ext.rxbindingVersion"
+    implementation "com.android.support:multidex:$rootProject.ext.multidexVersion"
+
+    implementation(name: 'appFrameLib-release-1.0.9', ext: 'aar')
+}
