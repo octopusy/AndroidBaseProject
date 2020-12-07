@@ -1,8 +1,7 @@
 package com.richard.androidbaseproject.present
 
-import com.axl.android.frameworkbase.net.utils.ProgressSubscriber
-import com.richard.androidbaseproject.model.HomeDataReqModel
 import com.richard.androidbaseproject.model.HomeDataRespModel
+import com.richard.androidbaseproject.utils.MySubscriber
 
 /**
  * @project：AndroidBaseProject
@@ -12,7 +11,7 @@ import com.richard.androidbaseproject.model.HomeDataRespModel
 class HomeDataContract {
 
     interface IRequestHomeDataModel : BaseModel {
-        fun requestHomeData(subscriber: ProgressSubscriber<HomeDataRespModel>, url:String)
+        fun requestHomeData(subscriber: MySubscriber<HomeDataRespModel>, url:String)
     }
 
     abstract class IRequestPersenter : BasePersenter<HomeDataContract.View, HomeDataContract.IRequestHomeDataModel>() {

@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
 
-
+        <activity android:name=".view.WebViewActivity"/>
 
     </application>
 

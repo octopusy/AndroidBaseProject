@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import com.richard.androidbaseproject.model.HomeDataReqModel
 import com.richard.androidbaseproject.model.HomeDataRespModel
+import com.richard.androidbaseproject.utils.MySubscriber
 
 /**
  * @project：AndroidBaseProject
@@ -14,14 +15,14 @@ import com.richard.androidbaseproject.model.HomeDataRespModel
 class HomeRequsetPresent : HomeDataContract.IRequestPersenter() {
 
     override fun requestHomeData(url: String) {
-        mModel.requestHomeData(object : ProgressSubscriber<HomeDataRespModel>(mView.context) {
+        mModel.requestHomeData(object : MySubscriber<HomeDataRespModel>(mView.context) {
             override fun _onNext(t: HomeDataRespModel?) {
                 Logger.d(Gson().toJson(t))
                 if (t!!.isOk()) {
                     //解密 encryptData
                     mView.requestResult(t)
                 } else {
-                    mView.requestFailResult(t.msg)
+                    mView.requestFailResult(t.errorMsg)
                 }
             }
 

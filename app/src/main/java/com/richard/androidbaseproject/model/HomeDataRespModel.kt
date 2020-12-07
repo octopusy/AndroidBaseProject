@@ -9,11 +9,31 @@ import android.text.TextUtils
  */
 class HomeDataRespModel {
 
-    var code = ""
-    var msg = ""
+    var errorCode = ""
+    var errorMsg = ""
+    var data:HomeDataModel? = null
 
     fun isOk(): Boolean {
-        return TextUtils.equals("0", code)
+        return TextUtils.equals("0", errorCode)
+    }
+
+    inner class HomeDataModel {
+        var curPage = ""
+        var offset = ""
+        var over = ""
+        var pageCount = ""
+        var size = ""
+        var total = ""
+        var datas:List<HomeData>? = null
+
+        override fun toString(): String {
+            return "HomeDataModel(curPage='$curPage', offset='$offset', over='$over', " +
+                    "pageCount='$pageCount', size='$size', total='$total', datas=$datas)"
+        }
+    }
+
+    override fun toString(): String {
+        return "HomeDataRespModel(errorCode='$errorCode', errorMsg='$errorMsg', data=$data)"
     }
 
 }

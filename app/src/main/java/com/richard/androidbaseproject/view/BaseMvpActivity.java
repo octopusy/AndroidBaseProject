@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.axl.android.frameworkbase.ui.AbsBaseActivity;
+import com.axl.android.frameworkbase.ui.ToolBarActivity;
 import com.axl.android.frameworkbase.view.statusbar.StatusBarCompat;
 import com.richard.androidbaseproject.present.BaseModel;
 import com.richard.androidbaseproject.present.BasePersenter;
@@ -17,12 +18,16 @@ import com.richard.androidbaseproject.utils.TUtil;
  * date   : 2019/7/2220:42
  * desc   :
  */
-public class BaseMvpActivity<P extends BasePersenter, M extends BaseModel> extends AbsBaseActivity implements IbaseView {
+public class BaseMvpActivity<P extends BasePersenter, M extends BaseModel> extends ToolBarActivity implements IbaseView {
     public P mPersenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void initToolBar() {
     }
 
     @Override

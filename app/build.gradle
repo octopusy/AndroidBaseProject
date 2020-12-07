@@ -76,9 +76,22 @@ dependencies {
     implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
 }
 
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.1.0'
+            }
+        }
+    }
+}
+
 repositories {
     mavenCentral()
     flatDir {
         dirs 'libs'
     }
 }
+
+
