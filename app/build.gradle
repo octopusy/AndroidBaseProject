@@ -12,8 +12,11 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+    }
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 
     signingConfigs {
@@ -46,19 +49,36 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    //implementation "com.android.support:support-vector-drawable:$rootProject.ext.supportLibraryVersion"
-    //implementation "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
+    implementation(name: 'lib_appframe', ext: 'aar')
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"
+    implementation "com.trello.rxlifecycle2:rxlifecycle:$rootProject.ext.rxLifecycleVersion"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.ext.rxLifecycleVersion"
     implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.ext.rxbindingVersion"
     implementation "com.jakewharton.rxbinding2:rxbinding-support-v4:$rootProject.ext.rxbindingVersion"
     implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$rootProject.ext.rxbindingVersion"
     implementation "com.jakewharton.rxbinding2:rxbinding-design:$rootProject.ext.rxbindingVersion"
     implementation "com.android.support:multidex:$rootProject.ext.multidexVersion"
+    implementation "com.orhanobut:logger:$rootProject.ext.loggerVersion"
+    //下拉刷新
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-1'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-1'
+    implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+}
 
-    implementation(name: 'appFrameLib-release-1.0.9', ext: 'aar')
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
 }
